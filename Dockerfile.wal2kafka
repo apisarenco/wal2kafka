@@ -1,0 +1,16 @@
+FROM python:3.11-alpine AS base
+
+RUN apk add postgresql-client curl gcc musl-dev libffi-dev openssl-dev postgresql-dev
+
+# Install poetry
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local python3 -
+RUN poetry config virtualenvs.create false
+
+COPY README.md pyproject.toml poetry.lock /app/
+RUN mkdir /app/wal2kafka && touch /app/wal2kafka/__init__.py
+
+WORKDIR /app
+RUN poetry install --no-dev
+RUN rm /app/wal2kafka/__init__.py
+
+CMD ["python", "wal2kafka/main.py"]

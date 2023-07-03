@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "wal2kafka"
+version = "0.1.0"
+description = "Push WAL segments from wal2json plugin to Kafka"
+authors = ["Alexandru Pisarenco <alex@lundas.net>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+kafka-python = "^2.0.2"
+psycopg = "^3.1.9"
+msgspec = "^0.16.0"
+loguru = "^0.7.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+pyright = "^1.1.316"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
